@@ -17,7 +17,7 @@ class LinkedList{
 
     insert(value){
         //if list is empty
-        if(this.head == null)
+        if(this.isEmpty())
             this.head = new LinkedListNode(value)
         else{
             let tmp = this.head
@@ -40,7 +40,6 @@ class LinkedList{
             while(current.next){
                 if(current.data == value){
                     prev.next = current.next
-                    prev = current
                     current = current.next
                     break
                 }
@@ -72,4 +71,24 @@ class LinkedList{
         }
         return false
     }
+    print(){
+        let result = ""
+        let current = this.head
+        while(current.next){
+            result += `${current.data} -> `
+            current = current.next
+        }
+        result += current.data
+        console.log(result)
+    }
 }
+
+(function test(){
+    let ll = new LinkedList()
+    for(let i =1; i<=5; i++) ll.insert(i)
+    ll.print()
+    ll.remove(3)
+    ll.print()
+    ll.remove(5)
+    ll.print()
+})()
